@@ -2,8 +2,15 @@
     <ContainerLayout :loading="loading">
         <div class="content">
             <div class="row mx-0">
-                <div class="col-lg-12">
-                    //
+                <div class="col-lg-4">
+                    <div class="card">
+                        //
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card">
+                        //
+                    </div>
                 </div>
             </div>
         </div>

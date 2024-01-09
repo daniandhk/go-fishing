@@ -1,7 +1,9 @@
 <template>
     <div id="main-container" class="px-0">
         <div class="scrollable-container" style="background-color: white;">
-            <slot></slot>
+            <div class="py-3 px-1">
+                <slot></slot>
+            </div>
         </div>
     </div>
 </template>
