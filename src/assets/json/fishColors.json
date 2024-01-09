@@ -1,0 +1,22 @@
+{
+    "colors": [
+        {
+            "id": "red",
+            "name": "red",
+            "bait_price": 1,
+            "hex": "#ff0000"
+        },
+        {
+            "id": "blue",
+            "name": "blue",
+            "bait_price": 2,
+            "hex": "#0000ff"
+        },
+        {
+            "id": "green",
+            "name": "green",
+            "bait_price": 3,
+            "hex": "#00ff00"
+        }
+    ]
+}

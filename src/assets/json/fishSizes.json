@@ -1,0 +1,19 @@
+{
+    "sizes": [
+        {
+            "id": "small",
+            "name": "small",
+            "pole_price": 5
+        },
+        {
+            "id": "medium",
+            "name": "medium",
+            "pole_price": 10
+        },
+        {
+            "id": "big",
+            "name": "big",
+            "pole_price": 15
+        }
+    ]
+}

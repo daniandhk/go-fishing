@@ -1,0 +1,58 @@
+{
+    "prizes": [
+        {
+            "size_id": "small",
+            "color_id": "red",
+            "min_prize": 1,
+            "max_prize": 5
+        },
+        {
+            "size_id": "medium",
+            "color_id": "red",
+            "min_prize": 5,
+            "max_prize": 10
+        },
+        {
+            "size_id": "big",
+            "color_id": "red",
+            "min_prize": 10,
+            "max_prize": 15
+        },
+        {
+            "size_id": "small",
+            "color_id": "blue",
+            "min_prize": 3,
+            "max_prize": 5
+        },
+        {
+            "size_id": "medium",
+            "color_id": "blue",
+            "min_prize": 8,
+            "max_prize": 10
+        },
+        {
+            "size_id": "big",
+            "color_id": "blue",
+            "min_prize": 13,
+            "max_prize": 15
+        },
+        {
+            "size_id": "small",
+            "color_id": "green",
+            "min_prize": 5,
+            "max_prize": 5
+        },
+        {
+            "size_id": "medium",
+            "color_id": "green",
+            "min_prize": 10,
+            "max_prize": 10
+        },
+        {
+            "size_id": "big",
+            "color_id": "green",
+            "min_prize": 15,
+            "max_prize": 15
+        }
+    ]
+}

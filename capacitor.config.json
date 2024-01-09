@@ -1,0 +1,8 @@
+{
+  "appId": "id.apsdigital.ebilling",
+  "appName": "APSD E-Billing",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  }
+}
