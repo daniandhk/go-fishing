@@ -50,7 +50,7 @@ export default {
                     let mainContainerHeight = document.getElementById('main-container').offsetHeight;
                     let fixedContainerHeight = document.getElementsByClassName('fixed-container')[0].offsetHeight;
 
-                    document.getElementsByClassName('scrollable-container')[0].style.height = (mainContainerHeight - fixedContainerHeight) + 'px';
+                    document.getElementsByClassName('scrollable-container')[0].style.height = (mainContainerHeight - fixedContainerHeight - 20) + 'px';
                 }
             }
         }

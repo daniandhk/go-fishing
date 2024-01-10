@@ -42,7 +42,7 @@
                                                     <tbody>
                                                         <tr v-for="(session, index) in leaderboard" :key="index">
                                                             <td class="text-center">{{ index + 1 }}</td>
-                                                            <td class="text-center">{{ session.name }}</td>
+                                                            <td class="text-center">{{ session.name ?? '-' }}</td>
                                                             <td class="text-center">{{ session.gold }}</td>
                                                         </tr>
                                                     </tbody>
@@ -66,69 +66,72 @@
                     </div>
                 </div>
                 <div class="col-lg-8">
-                    <div class="card m-1">
-                        //
+                    <div id="card-fishing" class="card m-1"
+                        style="background-color: #517F68; !important; border: 6px solid #3A3E4C !important;">
+                        <div class="h-100 d-flex flex-column justify-content-center align-items-center">
+                            <div class="w-100 pb-4 d-flex flex-column justify-content-center align-items-center">
+                                <img @click="selectPond" style="max-height: 170px; margin-left: -50px; cursor: pointer;"
+                                    src="@/assets/images/pond1.gif" />
+                            </div>
+                            <div class="w-100 pt-4 d-flex flex-column justify-content-center align-items-center">
+                                <img @click="selectPond"
+                                    style="max-height: 170px; transform: scaleX(-1); margin-left: 50px; cursor: pointer;"
+                                    src="@/assets/images/pond1.gif" />
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-12">
-                    <div class="card m-1" style="background-color: #F7F7F7; !important;">
-                        <div class="py-2 px-1">
-                            <div class="row mx-0">
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="card my-1" style="!important; box-shadow: none !important;">
-                                        <div class="p-2">
-                                            <div class="d-flex flex-column justify-content-center align-items-center">
-                                                <small class="mb-3 d-flex justify-content-center font-weight-bold">
-                                                    Gear
-                                                </small>
-                                                <div class="w-100 row mx-0">
-                                                    <div class="col-6">
-                                                        <div class="d-flex flex-column align-items-center text-center">
-                                                            <font-awesome-icon icon="coins" class="text-dark" />
-                                                            <small class="my-1">Gold</small>
-                                                            <small id="gold" class="font-weight-bold">{{
-                                                                initialSession.gold
-                                                            }}</small>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="d-flex flex-column align-items-center text-center">
-                                                            <font-awesome-icon icon="toolbox" class="text-dark" />
-                                                            <small class="my-1">Fishing Pole</small>
-                                                            <small id="pole" class="font-weight-bold">
-                                                                {{ initialSession.pole ? initialSession.pole.name : '-'
-                                                                }}
-                                                            </small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+            </div>
+            <div id="card-gear" class="row mx-0">
+                <div class="col-lg-4">
+                    <div class="card m-1">
+                        <div class=" p-2">
+                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                <small class="mb-3 d-flex justify-content-center font-weight-bold">
+                                    Gear
+                                </small>
+                                <div class="w-100 row mx-0">
+                                    <div class="col-6">
+                                        <div class="d-flex flex-column align-items-center text-center">
+                                            <font-awesome-icon icon="coins" class="text-dark" />
+                                            <small class="my-1">Gold</small>
+                                            <small id="gold" class="font-weight-bold">{{
+                                                initialSession.gold
+                                            }}</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="d-flex flex-column align-items-center text-center">
+                                            <font-awesome-icon icon="toolbox" class="text-dark" />
+                                            <small class="my-1">Fishing Pole</small>
+                                            <small id="pole" class="font-weight-bold">
+                                                {{ initialSession.pole ? initialSession.pole.name : '-'
+                                                }}
+                                            </small>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="card my-1" style="!important; box-shadow: none !important;">
-                                        <div class="p-2">
-                                            <div class="d-flex flex-column">
-                                                <small class="mb-3 d-flex justify-content-center font-weight-bold">
-                                                    Bait
-                                                </small>
-                                                <div class="w-100 row mx-0 d-flex justify-content-center">
-                                                    <div v-for="(color, index) in fishColors.colors" :key="index"
-                                                        class="col-lg-3 col-4">
-                                                        <div class="d-flex flex-column align-items-center text-center">
-                                                            <font-awesome-icon icon="shrimp"
-                                                                :style="{ color: color.hex }" />
-                                                            <small class="my-1">{{ color.name }}</small>
-                                                            <small class="font-weight-bold">
-                                                                {{ initialSession.baits.filter(bait => bait.id ===
-                                                                    color.id).length
-                                                                }}
-                                                            </small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card m-1">
+                        <div class=" p-2">
+                            <div class="d-flex flex-column">
+                                <small class="mb-3 d-flex justify-content-center font-weight-bold">
+                                    Bait
+                                </small>
+                                <div class="w-100 row mx-0 d-flex justify-content-center">
+                                    <div v-for="(color, index) in fishColors.colors" :key="index" class="col-lg-3 col-4">
+                                        <div class="d-flex flex-column align-items-center text-center">
+                                            <font-awesome-icon icon="shrimp" :style="{ color: color.hex }" />
+                                            <small class="my-1">{{ color.name }}</small>
+                                            <small class="font-weight-bold">
+                                                {{ initialSession.baits.filter(bait => bait.id ===
+                                                    color.id).length
+                                                }}
+                                            </small>
                                         </div>
                                     </div>
                                 </div>
@@ -137,6 +140,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
         <template v-slot:bottom-bar>
             <div class="w-100 card-footer" style="border-radius: 26px 26px 0 0 !important;">
@@ -171,9 +175,10 @@
             </div>
         </template>
 
-        <div v-if="isModalOpen" class="modal-mask">
+        <div v-if="isModalDetailOpen" class="modal-mask">
             <div class="modal-wrapper">
-                <div class="modal-container modal-wide" ref="target">
+                <div class="modal-container" ref="targetModalDetail"
+                    :style="{ width: screen() === 'xs' || screen() === 'sm' || screen() === 'md' ? '95vw' : '50vw' }">
                     <!-- <div class="modal-header">
                     </div> -->
                     <div class="modal-body">
@@ -186,7 +191,9 @@
                                 <div v-for="(size, index2) in fishSizes.sizes" :key="index2" class="col-4">
                                     <div class="d-flex flex-column align-items-center text-center">
                                         <font-awesome-icon icon="fish" :style="{ color: color.hex }" />
-                                        <small class="my-1">{{ size.name }} {{ color.name }}</small>
+                                        <small class="my-1">
+                                            {{ size.name }} {{ color.name }}
+                                        </small>
                                         <small class="font-weight-bold">
                                             {{ fishCount(color.id, size.id) }}
                                             <span v-if="fishValue(color.id, size.id) > 0">
@@ -196,6 +203,50 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <div v-if="isModalLeaderboardOpen" class="modal-mask">
+            <div class="modal-wrapper">
+                <div class="modal-container" ref="targetModalLeaderboard"
+                    :style="{ width: screen() === 'xs' || screen() === 'sm' || screen() === 'md' ? '95vw' : '50vw' }">
+                    <!-- <div class="modal-header">
+                    </div> -->
+                    <div class="modal-body">
+                        <div class="d-flex flex-column">
+                            <small class="mb-3 d-flex justify-content-center font-weight-bold">
+                                Fishing History
+                            </small>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Rank</th>
+                                        <th class="text-center">Name</th>
+                                        <th class="text-center">Gold</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody v-if="savedSessions && savedSessions.length > 0">
+                                    <tr v-for="(session, index) in savedSessions" :key="index">
+                                        <td class="text-center">{{ index + 1 }}</td>
+                                        <td class="text-center">{{ session.name ?? '-' }}</td>
+                                        <td class="text-center">{{ session.gold }}</td>
+                                        <td class="text-center">{{ session.status }}</td>
+                                        <td class="text-center">{{ session.date }}</td>
+                                    </tr>
+                                </tbody>
+                                <tbody v-else>
+                                    <tr>
+                                        <td colspan="5" class="text-center">No data available</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <!-- <div class="modal-footer">
@@ -221,7 +272,19 @@ export default {
         ContainerLayout,
     },
     computed: {
-        //savedSessions is array of objects of initialSession
+        //
+    },
+    mounted() {
+        this.resizePage();
+
+        window.addEventListener('resize', () => {
+            this.resizePage();
+        })
+    },
+    beforeUnmount() {
+        window.removeEventListener('resize', () => {
+            this.resizePage();
+        })
     },
     data() {
         return {
@@ -236,8 +299,8 @@ export default {
             },
             forecastString: '',
             initialSession: {
-                id: '',
-                name: '',
+                id: null,
+                name: null,
                 gold: 100,
                 pole: null,
                 baits: [],
@@ -246,8 +309,8 @@ export default {
                 fishCount: 0,
                 fishValue: 0,
                 goldResult: 100, // gold + fishValue
-                status: 'draft', // draw, win, lose, draft
-                date: '',
+                status: 'draft', // tie, win, lose, draft
+                date: null,
             },
             leaderboard: [],
         };
@@ -257,19 +320,28 @@ export default {
             return screenSize.size;
         };
 
-        const isModalOpen = ref(false);
-        const openModal = () => isModalOpen.value = true;
-        const closeModal = () => isModalOpen.value = false;
+        const isModalDetailOpen = ref(false);
+        const targetModalDetail = ref(null);
+        const openModalDetail = () => isModalDetailOpen.value = true;
+        const closeModalDetail = () => isModalDetailOpen.value = false;
+        onClickOutside(targetModalDetail, () => closeModalDetail());
 
-        const target = ref(null);
-        onClickOutside(target, () => closeModal());
+        const isModalLeaderboardOpen = ref(false);
+        const targetModalLeaderboard = ref(null);
+        const openModalLeaderboard = () => isModalLeaderboardOpen.value = true;
+        const closeModalLeaderboard = () => isModalLeaderboardOpen.value = false;
+        onClickOutside(targetModalLeaderboard, () => closeModalLeaderboard());
 
         return {
             screen,
-            isModalOpen,
-            target,
-            openModal,
-            closeModal,
+            isModalDetailOpen,
+            targetModalDetail,
+            openModalDetail,
+            closeModalDetail,
+            isModalLeaderboardOpen,
+            targetModalLeaderboard,
+            openModalLeaderboard,
+            closeModalLeaderboard,
         };
     },
     created() {
@@ -282,8 +354,49 @@ export default {
                 this.initialSession = lastSession;
             }
         }
+
+    },
+    watch: {
+        initialSession: {
+            handler: function (val) {
+                if (val.fish && val.fish.length > 0) {
+                    val.fishCount = val.fish.length;
+                    val.fishValue = val.fish.reduce((total, fish) => total + fish.prize, 0);
+                } else {
+                    val.fishCount = 0;
+                    val.fishValue = 0;
+                }
+
+                if (val.fishCount > 0) {
+                    val.goldResult = val.gold + val.fishValue;
+                } else {
+                    val.goldResult = val.gold;
+                }
+            },
+            deep: true,
+        },
     },
     methods: {
+        resizePage() {
+            if (document.getElementsByClassName('scrollable-container')[0] && document.getElementById('card-gear')) {
+                let scrollableContainerHeight = document.getElementsByClassName('scrollable-container')[0].offsetHeight;
+                let gearHeight = this.screen() === 'xs' || this.screen() === 'sm' || this.screen() === 'md' || this.screen() === 'lg' ? 0 : document.getElementById('card-gear').offsetHeight;
+                document.getElementById('card-fishing').style.height = (scrollableContainerHeight - gearHeight - 20) + 'px';
+            }
+
+            for (let i = 0; i < document.getElementsByClassName('modal-container').length; i++) {
+                if (this.screen() === 'xs' || this.screen() === 'sm' || this.screen() === 'md') {
+                    document.getElementsByClassName('modal-container')[i].style.width = '95vw';
+                } else {
+                    document.getElementsByClassName('modal-container')[i].style.width = '50vw';
+                }
+            }
+        },
+
+        fishList() {
+            this.isModalDetailOpen = true;
+        },
+
         clearData() {
             this.$vueAlert.fire({
                 title: null,
@@ -311,8 +424,8 @@ export default {
             });
         },
 
-        fishList() {
-            this.isModalOpen = true;
+        viewLeaderboard() {
+            this.isModalLeaderboardOpen = true;
         },
 
         //inside initialSession.fish is array of {size_id: 'small', color_id: 'blue', prize: 5}
@@ -381,8 +494,8 @@ export default {
 
         resetInitialSession() {
             this.initialSession = {
-                id: '',
-                name: '',
+                id: null,
+                name: null,
                 gold: 100,
                 pole: null,
                 baits: [],
@@ -391,8 +504,8 @@ export default {
                 fishCount: 0,
                 fishValue: 0,
                 goldResult: 100, // gold + fishValue
-                status: 'draft', // draw, win, lose, draft
-                date: '',
+                status: 'draft', // tie, win, lose, draft
+                date: null,
             };
         },
 
@@ -411,11 +524,22 @@ export default {
 
         skipDay() {
             this.resetInitialSession();
-            this.initialSession.status = 'win';
-            this.initialSession.date = new Date().toISOString().slice(0, 10);
+            this.initialSession.status = 'tie';
+            this.initialSession.date = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
             this.saveSession();
+
+            this.forecastData = {
+                sizes: {},
+                colors: {}
+            };
+            this.generateRandomForecast();
+
             this.$vueAlert.alert('Day skipped successfully', null, 'success');
         },
+
+        selectPond() {
+            this.$vueAlert.alert('Selected', null, 'success');
+        }
     }
 };
 </script>
