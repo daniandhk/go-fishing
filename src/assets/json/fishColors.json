@@ -2,21 +2,21 @@
     "colors": [
         {
             "id": "red",
-            "name": "red",
+            "name": "Red",
             "bait_price": 1,
-            "hex": "#ff0000"
+            "hex": "#dc3545"
         },
         {
             "id": "blue",
-            "name": "blue",
+            "name": "Blue",
             "bait_price": 2,
-            "hex": "#0000ff"
+            "hex": "#0d6efd"
         },
         {
             "id": "green",
-            "name": "green",
+            "name": "Green",
             "bait_price": 3,
-            "hex": "#00ff00"
+            "hex": "#198754"
         }
     ]
 }

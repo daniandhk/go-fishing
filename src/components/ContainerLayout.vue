@@ -1,15 +1,15 @@
 <template>
     <div id="main-container" class="px-0">
         <div class="scrollable-container" style="background-color: white;">
-            <div class="py-3 px-1">
-                <slot></slot>
-            </div>
+            <slot></slot>
+        </div>
+        <div class="fixed-container" style="background-color: #fff;">
+            <slot name="bottom-bar"></slot>
         </div>
     </div>
 </template>
 
 <script>
-
 export default {
     name: 'ContainerLayout',
     data() {
@@ -22,12 +22,9 @@ export default {
             type: Boolean,
             default: false,
         },
-        padding: {
-            type: Boolean,
-            default: true
-        }
     },
     components: {
+        // 
     },
     mounted() {
         window.addEventListener('resize', () => {
@@ -49,9 +46,11 @@ export default {
                     document.getElementById('main-container').style.height = '100vh';
                 }
 
-                if (document.getElementsByClassName('scrollable-container')[0]) {
+                if (document.getElementsByClassName('fixed-container')[0] && document.getElementsByClassName('scrollable-container')[0]) {
                     let mainContainerHeight = document.getElementById('main-container').offsetHeight;
-                    document.getElementsByClassName('scrollable-container')[0].style.height = mainContainerHeight + 'px';
+                    let fixedContainerHeight = document.getElementsByClassName('fixed-container')[0].offsetHeight;
+
+                    document.getElementsByClassName('scrollable-container')[0].style.height = (mainContainerHeight - fixedContainerHeight) + 'px';
                 }
             }
         }

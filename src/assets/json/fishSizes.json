@@ -2,17 +2,17 @@
     "sizes": [
         {
             "id": "small",
-            "name": "small",
+            "name": "Small",
             "pole_price": 5
         },
         {
             "id": "medium",
-            "name": "medium",
+            "name": "Medium",
             "pole_price": 10
         },
         {
             "id": "big",
-            "name": "big",
+            "name": "Big",
             "pole_price": 15
         }
     ]
