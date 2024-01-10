@@ -663,7 +663,6 @@ export default {
                     this.notClicked = true;
                 }
             },
-            deep: true,
         },
     },
     methods: {
