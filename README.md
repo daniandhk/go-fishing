@@ -1,4 +1,4 @@
-# billing-system-customer
+# go-fishing
 
 ## Project setup
 ```
