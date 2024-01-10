@@ -177,18 +177,18 @@ body {
 
 .modal-mask {
     position: fixed;
-    z-index: 9998;
+    z-index: 100;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+    overflow-x: scroll;
 }
 
 .modal-container {
     width: 300px;
-    margin: 150px auto;
-    padding: 5px;
+    margin: 40px auto;
     background-color: #fff;
     border-radius: 2px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
@@ -196,4 +196,54 @@ body {
 
 .modal-wide {
     width: 50vw !important;
+}
+
+.attention-text-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.attention-text {
+    color: white;
+    animation: dimming 1.5s infinite;
+    z-index: 10;
+}
+
+@keyframes dimming {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+#overlay {
+    position: fixed;
+    /* Sit on top of the page content */
+    display: none;
+    /* Hidden by default */
+    width: 100%;
+    /* Full width (cover the whole page) */
+    height: 100%;
+    /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Black background with opacity */
+    z-index: 9999;
+    /* Specify a stack order in case you're using a different order for other elements */
 }

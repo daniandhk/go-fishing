@@ -18,6 +18,7 @@ import CountryFlag from 'vue-country-flag-next';
 // Custom CSS
 import "./assets/css/custom.css";
 import "./assets/css/badge-custom.css";
+import "./assets/css/tooltip.css";
 
 const app = createApp(App)
     .use(router)
