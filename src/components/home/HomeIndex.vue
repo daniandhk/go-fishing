@@ -653,12 +653,7 @@ export default {
                     val.fishValue = 0;
                 }
 
-                if (val.fishCount > 0) {
-                    val.goldResult = val.gold + val.fishValue;
-                } else {
-                    val.goldResult = val.gold;
-                }
-
+                val.goldResult = val.gold + val.fishValue;
                 if (val.pole && this.unused_baits > 0 && val.status === 'draft') {
                     this.notClicked = true;
                 }
