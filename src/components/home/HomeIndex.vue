@@ -739,13 +739,8 @@ export default {
 
         baitAdd(color) {
             if (this.initialSession.gold >= color.bait_price) {
-                let data = {
-                    id: color.id,
-                    name: color.name,
-                    bait_price: color.bait_price,
-                    bait_used: 0,
-                    hex: color.hex,
-                };
+                let data = JSON.parse(JSON.stringify(color));
+                data.bait_used = 0;
                 this.initialSession.baits.push(data);
             }
         },
