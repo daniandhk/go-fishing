@@ -632,8 +632,9 @@ export default {
                 if (newVal) {
                     this.initialSession.gold = 100 - newVal.pole_price;
                 } else {
-                    this.calculateGoldResult();
+                    this.initialSession.gold = 100;
                 }
+                this.calculateGoldResult();
             },
         },
 
