@@ -641,7 +641,7 @@ export default {
         'initialSession.baits': {
             handler(newVal) {
                 let baitsCost = newVal.reduce((total, bait) => total + bait.bait_price, 0);
-                this.initialSession.gold -= baitsCost;
+                this.initialSession.gold = this.initialSession.pole ? 100 - this.initialSession.pole.pole_price - baitsCost : 100 - baitsCost;
                 this.initialSession.baitsCount = newVal.length;
                 this.calculateGoldResult();
             },
