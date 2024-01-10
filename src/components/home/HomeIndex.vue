@@ -10,7 +10,7 @@
             </div>
             <div class="row mx-0">
                 <div class="col-lg-4">
-                    <div class="card m-1" style="background-color: #F7F7F7; !important;">
+                    <div id="card-panel" class="card m-1" style="background-color: #F7F7F7; !important;">
                         <div class="py-2 px-1">
                             <div class="row mx-0">
                                 <div class="col-12">
@@ -627,37 +627,33 @@ export default {
 
     },
     watch: {
-        initialSession: {
-            handler: function (val) {
-                //calculate gold with pole.pole_price and array baits attribute bait_price
-                if (val.pole) {
-                    val.gold = 100 - val.pole.pole_price;
+        'initialSession.pole': {
+            handler(newVal) {
+                if (newVal) {
+                    this.initialSession.gold = 100 - newVal.pole_price;
                 } else {
-                    val.gold = 100;
-                }
-
-                if (val.baits && val.baits.length > 0) {
-                    val.baitsCount = val.baits.length;
-                    val.baits.forEach(bait => {
-                        val.gold -= bait.bait_price;
-                    });
-                } else {
-                    val.baitsCount = 0;
-                }
-
-                if (val.fish && val.fish.length > 0) {
-                    val.fishCount = val.fish.length;
-                    val.fishValue = val.fish.reduce((total, fish) => total + fish.prize, 0);
-                } else {
-                    val.fishCount = 0;
-                    val.fishValue = 0;
-                }
-
-                val.goldResult = val.gold + val.fishValue;
-                if (val.pole && this.unused_baits > 0 && val.status === 'draft') {
-                    this.notClicked = true;
+                    this.calculateGoldResult();
                 }
             },
+        },
+
+        'initialSession.baits': {
+            handler(newVal) {
+                let baitsCost = newVal.reduce((total, bait) => total + bait.bait_price, 0);
+                this.initialSession.gold -= baitsCost;
+                this.initialSession.baitsCount = newVal.length;
+                this.calculateGoldResult();
+            },
+            deep: true,
+        },
+
+        'initialSession.fish': {
+            handler(newVal) {
+                this.initialSession.fishValue = newVal.reduce((total, fish) => total + fish.prize, 0);
+                this.initialSession.fishCount = newVal.length;
+                this.calculateGoldResult();
+            },
+            deep: true,
         },
     },
     methods: {
@@ -665,7 +661,10 @@ export default {
             if (document.getElementsByClassName('scrollable-container')[0] && document.getElementById('card-gear')) {
                 let scrollableContainerHeight = document.getElementsByClassName('scrollable-container')[0].offsetHeight;
                 let gearHeight = this.screen() === 'xs' || this.screen() === 'sm' || this.screen() === 'md' || this.screen() === 'lg' ? 0 : document.getElementById('card-gear').offsetHeight;
-                document.getElementById('card-fishing').style.height = (scrollableContainerHeight - gearHeight - 20) + 'px';
+                document.getElementById('card-fishing').style.minHeight = (scrollableContainerHeight - gearHeight - 20) + 'px';
+                document.getElementById('card-fishing').style.height = '100%';
+                let cardFishingHeight = document.getElementById('card-fishing').offsetHeight;
+                document.getElementById('card-fishing').style.height = (cardFishingHeight - 6) + 'px';
             }
 
             for (let i = 0; i < document.getElementsByClassName('modal-container').length; i++) {
@@ -701,6 +700,10 @@ export default {
                     this.$vueAlert.alert('Data cleared successfully', null, 'success');
                 }
             });
+        },
+
+        calculateGoldResult() {
+            this.initialSession.goldResult = this.initialSession.gold + this.initialSession.fishValue;
         },
 
         fishCount(color, size) {
